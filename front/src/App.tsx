@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Top from './components/Top';
-import Header from './components/layouts/header';
+import Header from './components/layouts/Header';
 const App: React.FC = () => {
   const [loginFlag, setLoginFlag] = useState(false);
   //////////////////////////////////////////////////
