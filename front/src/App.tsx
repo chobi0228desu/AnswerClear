@@ -3,7 +3,7 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     <div>
-      <h1>AnswerClear</h1>
+      <h1>AnswerClear!</h1>
     </div>
   );
 }
