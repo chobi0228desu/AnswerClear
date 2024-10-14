@@ -1,6 +1,6 @@
 #環境構築について
 #########cloneしない場合
-# 1.setup.shをルートディレクトリ階層で実行
+# 1.answer_clear/others/setup.shをルートディレクトリ階層で実行
 ./setup.sh 
 # 2.react-routerのinstall
 cd front
