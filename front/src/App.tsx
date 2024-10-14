@@ -1,10 +1,13 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Top from './components/Top';
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>AnswerClear!</h1>
-    </div>
+    <Router>
+      <Routes>
+          <Route path="/" element={<Top />} />
+      </Routes>
+    </Router>
   );
 }
 

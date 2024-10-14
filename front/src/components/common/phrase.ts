@@ -1,0 +1,1 @@
+export const APPLICATON_TITLT = "AnswerClear";
