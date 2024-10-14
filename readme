@@ -1,6 +1,13 @@
 #環境構築について
+#########cloneしない場合
 # 1.setup.shをルートディレクトリ階層で実行
 ./setup.sh 
+# 2.react-routerのinstall
+cd front
+npm install react-router-dom@6.14.0
+#########cloneする場合
+# 1.cloneする
+git clone git@github.com:chobi0228desu/AnswerClear.git
 # 2.react-routerのinstall
 cd front
 npm install react-router-dom@6.14.0
