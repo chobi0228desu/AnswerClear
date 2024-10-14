@@ -8,6 +8,11 @@ npm install react-router-dom@6.14.0
 #########cloneする場合
 # 1.cloneする
 git clone git@github.com:chobi0228desu/AnswerClear.git
-# 2.react-routerのinstall
+# dockerをbuild
+docker-compose build
+# 3.react-routerのinstall
 cd front
 npm install react-router-dom@6.14.0
+
+# 内容を更新した時(現状はホットローディングを実装していない為)
+docker-compose up -d --build
