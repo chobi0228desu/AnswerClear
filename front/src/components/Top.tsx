@@ -5,7 +5,7 @@ import { alertLog } from './common/method';
 
 const Top: React.FC = () => {
   return (
-    <h1>{APPLICATON_TITLT}</h1>
+    <h1></h1>
   );
 };
 
