@@ -11,7 +11,7 @@ const Top: React.FC = () => {
       <BaseButton to="/login" text="ログイン" />
       <Link
         to="/password_edit"
-        className="text-blue-500 hover:text-blue-700 underline"
+        className={`text-blue-500 hover:text-blue-700 underline mt-5`}
       >パスワードをお忘れの方はこちら</Link>
     </div>
   );
