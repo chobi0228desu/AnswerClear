@@ -9,6 +9,10 @@ const Top: React.FC = () => {
     <div className={`h-full flex flex-col items-center justify-center`}>
       <BaseButton to="/signup" text="新規登録" />
       <BaseButton to="/login" text="ログイン" />
+      <Link
+        to="/password_edit"
+        className="text-blue-500 hover:text-blue-700 underline"
+      >パスワードをお忘れの方はこちら</Link>
     </div>
   );
 };
