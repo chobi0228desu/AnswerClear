@@ -1,7 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-const BaseButton: React.FC<{ to: string; text: string }> = ({ to, text }) => {
+interface BaseButtonProps {
+  to: string;
+  text: string;
+  about?: any;
+}
+const BaseButton: React.FC<BaseButtonProps> = ({ to, text, about }) => {
   return (
       <Link
         to={to}
