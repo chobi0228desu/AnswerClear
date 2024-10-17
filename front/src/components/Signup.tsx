@@ -56,7 +56,12 @@ const Signup: React.FC = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="username">ユーザー名</label>
+          <label className="block text-sm mb-2 font-bold" htmlFor="username">
+            ユーザー名
+            <span className="bg-red-500 text-white text-xs font-semibold ml-2 px-2 py-1 rounded-full">
+              必須
+            </span>
+          </label>
           <input
             id="username"
             type="text"
@@ -68,7 +73,12 @@ const Signup: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="email">メールアドレス</label>
+          <label className="block text-sm mb-2 font-bold" htmlFor="email">
+            メールアドレス
+            <span className="bg-red-500 text-white text-xs font-semibold ml-2 px-2 py-1 rounded-full">
+              必須
+            </span>
+          </label>
           <input
             id="email"
             type="email"
@@ -80,7 +90,12 @@ const Signup: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="password">パスワード</label>
+          <label className="block text-sm mb-2 font-bold" htmlFor="password">
+            パスワード
+            <span className="bg-red-500 text-white text-xs font-semibold ml-2 px-2 py-1 rounded-full">
+              必須
+            </span>
+          </label>
           <input
             id="password"
             type="password"
@@ -92,7 +107,12 @@ const Signup: React.FC = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-2" htmlFor="confirmPassword">確認用パスワード</label>
+          <label className="block text-sm mb-2 font-bold" htmlFor="confirmPassword">
+            確認用パスワード
+            <span className="bg-red-500 text-white text-xs font-semibold ml-2 px-2 py-1 rounded-full">
+              必須
+            </span>
+          </label>
           <input
             id="confirmPassword"
             type="password"
@@ -105,7 +125,7 @@ const Signup: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+          className="w-full mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 font-bold"
         >
           登録
         </button>
