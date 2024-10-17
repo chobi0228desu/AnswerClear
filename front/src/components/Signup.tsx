@@ -49,7 +49,7 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-slate-100 shadow-md rounded-lg">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg">
       <h2 className="text-2xl font-bold text-center mb-6">新規登録</h2>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       {success && <div className="text-green-500 mb-4">サインアップに成功しました！</div>}
