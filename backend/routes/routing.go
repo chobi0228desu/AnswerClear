@@ -10,4 +10,9 @@ func SetupRoutes(router *gin.Engine) {
     {
         homeGroup.GET("/", controllers.GetTop)
     }
+    authGroup := router.Group("/auths")
+    {
+        authGroup.POST("/signup", controllers.PostSignup)
+        authGroup.POST("/login", controllers.PostLogin)
+    }
 }
