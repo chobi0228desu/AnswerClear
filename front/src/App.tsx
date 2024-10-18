@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Top from './components/Top';
 import Signup from './components/Signup';
+import Login from './components/Login';
 import Header from './components/layouts/Header';
 const App: React.FC = () => {
   const [loginFlag, setLoginFlag] = useState(false);
@@ -19,6 +20,7 @@ const App: React.FC = () => {
             <>
               <Route path="/" element={<Top />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
             </>
           )}
         </Routes>
