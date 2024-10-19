@@ -14,16 +14,22 @@ func PostSignup(c *gin.Context) {
         return
     }
 
-    // CreateUserを呼び出し、userとprofileを渡す
-    err := models.CreateUser(&user, &profile)
+    // ユーザーを作成し、UserIDを取得
+    userID, err := models.CreateUser(&user)
     if err != nil {
         c.JSON(500, gin.H{"error": err.Error()})
         return
     }
 
-    c.JSON(200, gin.H{"message": "User created successfully!"})
-}
+    // プロフィールを作成するためにUserIDを設定
+    profile.UserID = int(userID)
+    if err := models.CreateProfile(&profile); err != nil {
+        c.JSON(500, gin.H{"error": err.Error()})
+        return
+    }
 
+    c.JSON(200, gin.H{"message": "User and profile created successfully!"})
+}
 func PostLogin(c *gin.Context) {
     c.JSON(200, gin.H{
         "page": "login",

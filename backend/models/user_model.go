@@ -16,16 +16,6 @@ type User struct {
     UpdatedAt string `json:"updated_at"`
 }
 
-type Profile struct {
-    ProfileID   int    `json:"profile_id"`
-    UserID      int    `json:"user_id"`
-    Introduction string `json:"introduction"`
-    IconImg      string `json:"icon_img"`
-    CatchPhrase  string `json:"catch_phrase"`
-    CreatedAt    string `json:"created_at"`
-    UpdatedAt    string `json:"updated_at"`
-}
-
 var db *sql.DB
 
 func InitDB(dataSourceName string) error {
@@ -41,24 +31,17 @@ func InitDB(dataSourceName string) error {
     return nil
 }
 
-func CreateUser(user *User, profile *Profile) error {
+func CreateUser(user *User) (int64, error) {
     query := `INSERT INTO user (name, mail, password, admin_flg) VALUES (?, ?, ?, ?)`
     result, err := db.Exec(query, user.Name, user.Mail, user.Password, user.AdminFlg)
     if err != nil {
-        return fmt.Errorf("failed to create user: %w", err)
+        return 0, fmt.Errorf("failed to create user: %w", err)
     }
 
     userID, err := result.LastInsertId()
     if err != nil {
-        return fmt.Errorf("failed to get last insert id: %w", err)
+        return 0, fmt.Errorf("failed to get last insert id: %w", err)
     }
 
-    profile.UserID = int(userID)
-    profileQuery := `INSERT INTO profile (user_id, introduction, icon_img, catch_phrase) VALUES (?, ?, ?, ?)`
-    _, err = db.Exec(profileQuery, profile.UserID, profile.Introduction, profile.IconImg, profile.CatchPhrase)
-    if err != nil {
-        return fmt.Errorf("failed to create profile: %w", err)
-    }
-
-    return nil
+    return userID, nil
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { APPLICATON_URL } from './common/setting';
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState(''); // 確認用パスワードの状態追加
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -23,20 +24,20 @@ const Signup: React.FC = () => {
     }
 
     try {
-          const response = await fetch('http://localhost:8080/auths/signup', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                name: username, 
-                mail: email,
-                password,
-                admin_flg: 0,
-                introduction: "",  // プロファイル情報をここで追加
-                icon_img: "", 
-                catch_phrase: ""
-            }),
+        const response = await fetch(`${APPLICATON_URL}/auths/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+              name: username, 
+              mail: email,
+              password,
+              admin_flg: 0,
+              introduction: "",
+              icon_img: "", 
+              catch_phrase: ""
+          }),
         });
 
         if (response.ok) {
