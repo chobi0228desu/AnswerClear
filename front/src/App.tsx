@@ -7,7 +7,6 @@ import Header from './components/layouts/Header';
 
 const App: React.FC = () => {
   const [loginFlag, setLoginFlag] = useState(false);
-
   useEffect(() => {
     setLoginFlag(!!localStorage.getItem('username'));
   }, []);

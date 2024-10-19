@@ -14,48 +14,62 @@ const Signup: React.FC = () => {
 
     // バリデーションチェック
     if (!username || !email || !password || !confirmPassword) {
-        setError('全ての項目を入力してください');
-        return;
+      setError('全ての項目を入力してください');
+      return;
+    }
+
+    // メールアドレスのバリデーション
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('無効なメールアドレスです');
+      return;
+    }
+
+    // パスワードのバリデーション
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // 英数字含む8文字以上
+    if (!passwordRegex.test(password)) {
+      setError('パスワードは英数字を含む8文字以上である必要があります');
+      return;
     }
 
     if (password !== confirmPassword) {
-        setError('パスワードと確認用パスワードが一致しません');
-        return;
+      setError('パスワードと確認用パスワードが一致しません');
+      return;
     }
 
     try {
-        const response = await fetch(`${APPLICATON_URL}/auths/signup`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-              name: username, 
-              mail: email,
-              password,
-              admin_flg: 0,
-              introduction: "",
-              icon_img: "", 
-              catch_phrase: ""
-          }),
-        });
+      const response = await fetch(`${APPLICATON_URL}/auths/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+            name: username, 
+            mail: email,
+            password,
+            admin_flg: 0,
+            introduction: "",
+            icon_img: "", 
+            catch_phrase: ""
+        }),
+      });
 
-        if (response.ok) {
-            setSuccess(true);
-            localStorage.setItem('username', username);
-            window.location.href = '/';
-            setError('');
-            // フォームをクリア
-            setUsername('');
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-        } else {
-            const errorMessage = await response.text();
-            setError(errorMessage || 'サインアップに失敗しました');
-        }
+      if (response.ok) {
+          setSuccess(true);
+          localStorage.setItem('username', username);
+          window.location.href = '/';
+          setError('');
+          // フォームをクリア
+          setUsername('');
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+      } else {
+          const errorMessage = await response.text();
+          setError(errorMessage || 'サインアップに失敗しました');
+      }
     } catch (err) {
-        setError('ネットワークエラーが発生しました');
+      setError('ネットワークエラーが発生しました');
     }
   };
   return (
