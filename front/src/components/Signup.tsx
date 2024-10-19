@@ -8,46 +8,53 @@ const Signup: React.FC = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // バリデーションチェック
     if (!username || !email || !password || !confirmPassword) {
-      setError('全ての項目を入力してください');
-      return;
+        setError('全ての項目を入力してください');
+        return;
     }
 
     if (password !== confirmPassword) {
-      setError('パスワードと確認用パスワードが一致しません');
-      return;
+        setError('パスワードと確認用パスワードが一致しません');
+        return;
     }
 
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
+          const response = await fetch('http://localhost:8080/auths/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                name: username, 
+                mail: email,
+                password,
+                admin_flg: 0,
+                introduction: "",  // プロファイル情報をここで追加
+                icon_img: "", 
+                catch_phrase: ""
+            }),
+        });
 
-      if (response.ok) {
-        setSuccess(true);
-        setError('');
-        // フォームをクリア
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword(''); // 確認用パスワードもリセット
-      } else {
-        const errorMessage = await response.text();
-        setError(errorMessage || 'サインアップに失敗しました');
-      }
+        if (response.ok) {
+            setSuccess(true);
+            setError('');
+            // フォームをクリア
+            setUsername('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+        } else {
+            const errorMessage = await response.text();
+            setError(errorMessage || 'サインアップに失敗しました');
+        }
     } catch (err) {
-      setError('ネットワークエラーが発生しました');
+        setError('ネットワークエラーが発生しました');
     }
   };
-
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg">
       <h2 className="text-2xl font-bold text-center mb-6">新規登録</h2>
