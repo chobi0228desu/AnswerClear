@@ -26,7 +26,7 @@ const Signup: React.FC = () => {
           const response = await fetch('http://localhost:8080/auths/signup', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify({ 
                 name: username, 
@@ -41,6 +41,8 @@ const Signup: React.FC = () => {
 
         if (response.ok) {
             setSuccess(true);
+            localStorage.setItem('username', username);
+            window.location.href = '/';
             setError('');
             // フォームをクリア
             setUsername('');
