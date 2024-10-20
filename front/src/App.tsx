@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Top from './components/Top';
 import Signup from './components/Signup';
@@ -7,7 +7,7 @@ import Header from './components/layouts/Header';
 
 const App: React.FC = () => {
   const [loginFlag, setLoginFlag] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     setLoginFlag(!!localStorage.getItem('username'));
   }, []);
 
