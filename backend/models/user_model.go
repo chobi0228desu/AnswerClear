@@ -45,3 +45,9 @@ func CreateUser(user *User) (int64, error) {
 
     return userID, nil
 }
+
+
+func GetUserByEmail(user *User, mail string) error {
+    query := "SELECT id, mail, password FROM users WHERE mail = ?"
+    return db.QueryRow(query, email).Scan(&user.Mail, &user.Password)
+}

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { APPLICATON_URL } from './common/setting';
+
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -6,7 +8,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -17,7 +19,7 @@ const Login: React.FC = () => {
     }
 
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch(`${APPLICATON_URL}/auths/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,6 +29,8 @@ const Login: React.FC = () => {
 
       if (response.ok) {
         setSuccess(true);
+        localStorage.setItem('username', username);
+        window.location.href = '/';
         setError('');
         // フォームをクリア
         setUsername('');
