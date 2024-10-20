@@ -7,27 +7,34 @@ import Header from './components/layouts/Header';
 
 const App: React.FC = () => {
   const [loginFlag, setLoginFlag] = useState(false);
+
+  // ログイン状態をチェック
   useLayoutEffect(() => {
     setLoginFlag(!!localStorage.getItem('username'));
   }, []);
 
   return (
     <div className="w-full min-h-screen overflow-hidden">
-      <Header/>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={loginFlag ? <h1>ログイン済みです。</h1> : <Top />}
-          />
-          {!loginFlag && (
-            <>
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-            </>
-          )}
-        </Routes>
-      </Router>
+      {/* ヘッダー */}
+      <Header />
+      
+      {/* ヘッダーの高さを確保するために padding-top を設定 */}
+      <main className="pt-16"> {/* h-16 分の padding を追加 */}
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={loginFlag ? <h1>ログイン済みです。</h1> : <Top />}
+            />
+            {!loginFlag && (
+              <>
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+              </>
+            )}
+          </Routes>
+        </Router>
+      </main>
     </div>
   );
 }
